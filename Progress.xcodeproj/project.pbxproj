@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04386A0B16908C4C0058C876 /* Progress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Progress.entitlements; sourceTree = "<group>"; };
 		04BDDEC016902D0900D04A9E /* Progress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Progress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BDDEC416902D0900D04A9E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04BDDEC616902D0900D04A9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,6 +118,7 @@
 		04BDDECA16902D0900D04A9E /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				04386A0B16908C4C0058C876 /* Progress.entitlements */,
 				04BDDED316902D0900D04A9E /* PPAppDelegate.h */,
 				04BDDED416902D0900D04A9E /* PPAppDelegate.m */,
 				04BDDEDC16902D0900D04A9E /* MainStoryboard.storyboard */,
@@ -376,6 +378,7 @@
 		04BDDEFA16902D0A00D04A9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Progress/Progress.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Progress/Progress-Prefix.pch";
 				INFOPLIST_FILE = "Progress/Progress-Info.plist";
@@ -387,6 +390,7 @@
 		04BDDEFB16902D0A00D04A9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Progress/Progress.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Progress/Progress-Prefix.pch";
 				INFOPLIST_FILE = "Progress/Progress-Info.plist";
@@ -448,6 +452,7 @@
 				04BDDEFB16902D0A00D04A9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04BDDEFC16902D0A00D04A9E /* Build configuration list for PBXNativeTarget "ProgressTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +461,7 @@
 				04BDDEFE16902D0A00D04A9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
