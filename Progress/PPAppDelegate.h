@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NUI/NUIAppearance.h>
 
 @interface PPAppDelegate : UIResponder <UIApplicationDelegate>
 
