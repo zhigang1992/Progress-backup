@@ -31,9 +31,13 @@
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-37324298-1"];
     
     [[PPEvenKitManager sharedManager] setupEventManagerWithCompletionBlock:^(BOOL success) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Progress" bundle:nil];
         if (success) {
-            NSLog(@"success");
+            UIViewController *reminedrsVC = [storyBoard instantiateViewControllerWithIdentifier:@"Reminders"];
+            self.window.rootViewController = reminedrsVC;
         } else {
+            UIViewController *accessDenyVC = [storyBoard instantiateViewControllerWithIdentifier:@"AccessDeny"];
+            self.window.rootViewController = accessDenyVC;
             NSLog(@"failed");
         }
     }];

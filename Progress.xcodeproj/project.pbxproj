@@ -13,6 +13,8 @@
 		044C661516AFE28100F9BC1E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 044C661416AFE28100F9BC1E /* Icon@2x.png */; };
 		044C661816AFE29F00F9BC1E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 044C661716AFE29F00F9BC1E /* Icon.png */; };
 		0486284C16B000D700F62384 /* Progress.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0486284A16B000D700F62384 /* Progress.xcdatamodeld */; };
+		048D433D16DB9BA400A40CB1 /* Progress.nss in Resources */ = {isa = PBXBuildFile; fileRef = 048D433C16DB9BA400A40CB1 /* Progress.nss */; };
+		048D434016DB9D5400A40CB1 /* PPRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048D433F16DB9D5400A40CB1 /* PPRemindersViewController.m */; };
 		04BDDEC516902D0900D04A9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC416902D0900D04A9E /* UIKit.framework */; };
 		04BDDEC716902D0900D04A9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC616902D0900D04A9E /* Foundation.framework */; };
 		04BDDEC916902D0900D04A9E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC816902D0900D04A9E /* CoreGraphics.framework */; };
@@ -54,6 +56,9 @@
 		044C661416AFE28100F9BC1E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		044C661716AFE29F00F9BC1E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		0486284B16B000D700F62384 /* Progress.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Progress.xcdatamodel; sourceTree = "<group>"; };
+		048D433C16DB9BA400A40CB1 /* Progress.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Progress.nss; sourceTree = "<group>"; };
+		048D433E16DB9D5300A40CB1 /* PPRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRemindersViewController.h; sourceTree = "<group>"; };
+		048D433F16DB9D5400A40CB1 /* PPRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRemindersViewController.m; sourceTree = "<group>"; };
 		04BDDEC016902D0900D04A9E /* Progress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Progress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BDDEC416902D0900D04A9E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04BDDEC616902D0900D04A9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,6 +158,8 @@
 		04BDDECA16902D0900D04A9E /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				048D433E16DB9D5300A40CB1 /* PPRemindersViewController.h */,
+				048D433F16DB9D5400A40CB1 /* PPRemindersViewController.m */,
 				04FD824516DB02910028AF2A /* GVUserDefaults+Progress.h */,
 				04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */,
 				04FD824016DAFB770028AF2A /* PPEvenKitManager.h */,
@@ -177,6 +184,7 @@
 				04BDDECC16902D0900D04A9E /* Progress-Info.plist */,
 				04BDDECD16902D0900D04A9E /* InfoPlist.strings */,
 				04BDDED016902D0900D04A9E /* main.m */,
+				048D433C16DB9BA400A40CB1 /* Progress.nss */,
 				04BDDED216902D0900D04A9E /* Progress-Prefix.pch */,
 				04BDDED616902D0900D04A9E /* Default.png */,
 				04BDDED816902D0900D04A9E /* Default@2x.png */,
@@ -287,6 +295,7 @@
 				04BDDEDE16902D0900D04A9E /* Progress.storyboard in Resources */,
 				044C661516AFE28100F9BC1E /* Icon@2x.png in Resources */,
 				044C661816AFE29F00F9BC1E /* Icon.png in Resources */,
+				048D433D16DB9BA400A40CB1 /* Progress.nss in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +364,7 @@
 				0486284C16B000D700F62384 /* Progress.xcdatamodeld in Sources */,
 				04FD824216DAFB770028AF2A /* PPEvenKitManager.m in Sources */,
 				04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */,
+				048D434016DB9D5400A40CB1 /* PPRemindersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

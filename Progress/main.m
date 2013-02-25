@@ -13,7 +13,7 @@
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        [NUISettings init];
+        [NUISettings initWithStylesheet:@"Progress"];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([PPAppDelegate class]));
     }
 }
