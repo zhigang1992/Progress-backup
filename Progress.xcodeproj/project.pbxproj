@@ -25,7 +25,6 @@
 		04BDDED916902D0900D04A9E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BDDED816902D0900D04A9E /* Default@2x.png */; };
 		04BDDEDB16902D0900D04A9E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BDDEDA16902D0900D04A9E /* Default-568h@2x.png */; };
 		04BDDEDE16902D0900D04A9E /* Progress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BDDEDC16902D0900D04A9E /* Progress.storyboard */; };
-		04BDDEE116902D0900D04A9E /* PPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BDDEE016902D0900D04A9E /* PPViewController.m */; };
 		04BDDEE916902D0A00D04A9E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEE816902D0A00D04A9E /* SenTestingKit.framework */; };
 		04BDDEEA16902D0A00D04A9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC416902D0900D04A9E /* UIKit.framework */; };
 		04BDDEEB16902D0A00D04A9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC616902D0900D04A9E /* Foundation.framework */; };
@@ -73,8 +72,6 @@
 		04BDDED816902D0900D04A9E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		04BDDEDA16902D0900D04A9E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		04BDDEDD16902D0900D04A9E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Progress.storyboard; sourceTree = "<group>"; };
-		04BDDEDF16902D0900D04A9E /* PPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPViewController.h; sourceTree = "<group>"; };
-		04BDDEE016902D0900D04A9E /* PPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPViewController.m; sourceTree = "<group>"; };
 		04BDDEE716902D0A00D04A9E /* ProgressTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgressTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BDDEE816902D0A00D04A9E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		04BDDEF016902D0A00D04A9E /* ProgressTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProgressTests-Info.plist"; sourceTree = "<group>"; };
@@ -168,8 +165,6 @@
 				04BDDED416902D0900D04A9E /* PPAppDelegate.m */,
 				04BDDEDC16902D0900D04A9E /* Progress.storyboard */,
 				0486284A16B000D700F62384 /* Progress.xcdatamodeld */,
-				04BDDEDF16902D0900D04A9E /* PPViewController.h */,
-				04BDDEE016902D0900D04A9E /* PPViewController.m */,
 				04BDDECB16902D0900D04A9E /* Supporting Files */,
 			);
 			path = Progress;
@@ -360,7 +355,6 @@
 			files = (
 				04BDDED116902D0900D04A9E /* main.m in Sources */,
 				04BDDED516902D0900D04A9E /* PPAppDelegate.m in Sources */,
-				04BDDEE116902D0900D04A9E /* PPViewController.m in Sources */,
 				0486284C16B000D700F62384 /* Progress.xcdatamodeld in Sources */,
 				04FD824216DAFB770028AF2A /* PPEvenKitManager.m in Sources */,
 				04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */,

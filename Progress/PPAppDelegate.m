@@ -30,6 +30,12 @@
     // Create tracker instance.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-37324298-1"];
     
+    [self startUsingProgress];
+    
+    return YES;
+}
+
+- (void)startUsingProgress{
     [[PPEvenKitManager sharedManager] setupEventManagerWithCompletionBlock:^(BOOL success) {
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Progress" bundle:nil];
         if (success) {
@@ -41,8 +47,6 @@
             NSLog(@"failed");
         }
     }];
-    
-    return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
