@@ -5,6 +5,7 @@ platform :ios, '6.0'
     pod 'RDActionSheet', '~>0.0.1'
     pod 'AHAlertView', '~>0.0.2'
     pod 'GVUserDefaults', '~>0.9.0'
+    pod 'SVProgressHUD', '~>0.9'
 
 target :ProgressTests, :exclusive => true do
       pod 'GVUserDefaults', '~>0.9.0'

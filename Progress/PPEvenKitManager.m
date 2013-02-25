@@ -77,7 +77,7 @@ static PPEvenKitManager *_sharedManager;
     }
 }
 
-- (void)getReminderItemsInListWithIdentifier:(NSString *)listIdentifier includeCompleted:(BOOL)includeCompleted includeImcompleted:(BOOL)incluImcomple withCompletionBlock:(void (^)(NSArray *))completion{
+- (void)getReminderItemsInListWithIdentifier:(NSString *)listIdentifier includeCompleted:(BOOL)includeCompleted includeImcompleted:(BOOL)incluImcomple withCompletionBlock:(void (^)(NSArray *reminedrItems))completion{
     if ([self haveAccessToReminder]){
         if (!incluImcomple && !includeCompleted) {
             completion(nil);
