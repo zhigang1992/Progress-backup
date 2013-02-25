@@ -9,12 +9,15 @@
 #import "PPRemindersViewController.h"
 #import "PPEvenKitManager.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "ReminderItemCell.h"
 
-@interface PPRemindersViewController ()
+@interface PPRemindersViewController () <ReminderItemCellDelegate>
 @property (nonatomic) NSArray *remindersDatasource;
 @end
 
 @implementation PPRemindersViewController
+
+static NSString *CellIdentifier = @"ReminderCell";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,17 +35,24 @@
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationController.navigationBarHidden = YES;
     
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    [self.tableView registerClass:[ReminderItemCell class] forCellReuseIdentifier:CellIdentifier];
+    
     [SVProgressHUD show];
     NSString *defaultReminderIdentifier = [[PPEvenKitManager sharedManager] defaultReminderListIdentifier];
     [[PPEvenKitManager sharedManager] getReminderItemsInListWithIdentifier:defaultReminderIdentifier includeCompleted:YES includeImcompleted:YES withCompletionBlock:^(NSArray *reminedrItems) {
         self.remindersDatasource = reminedrItems;
-        [self.tableView reloadData];
         [SVProgressHUD dismiss];
+        [self.tableView reloadData];
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,15 +70,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ReminderCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
+    ReminderItemCell *cell = [[ReminderItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     EKReminder *reminder = [self.remindersDatasource objectAtIndex:indexPath.row];
+    cell.delegate = self;
     cell.textLabel.text = reminder.title;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
     cell.accessoryType = reminder.completed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    
     return cell;
 }
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    return [[UIView alloc] init];
+//}
+//
+//- (CGFloat )tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 1;
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc] init];
@@ -128,6 +146,26 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - ReminderCell Delegate
+
+- (void)completedByTheUser:(ReminderItemCell *)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    EKReminder *reminder = [self.remindersDatasource objectAtIndex:indexPath.row];
+    sender.accessoryType = reminder.completed ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
+    reminder.completed = !reminder.completed;
+    [[PPEvenKitManager sharedManager] saveReminder:reminder];
+}
+
+- (void)deletedByTheUser:(ReminderItemCell *)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    EKReminder *reminder = [self.remindersDatasource objectAtIndex:indexPath.row];
+    NSMutableArray *mutableDataSource = [self.remindersDatasource mutableCopy];
+    [mutableDataSource removeObjectAtIndex:indexPath.row];
+    self.remindersDatasource = mutableDataSource;
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [[PPEvenKitManager sharedManager] deleteReminder:reminder];
 }
 
 @end

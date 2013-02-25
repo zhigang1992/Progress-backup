@@ -92,7 +92,9 @@ static PPEvenKitManager *_sharedManager;
                 reminderPredicate = [self.defaultStore predicateForCompletedRemindersWithCompletionDateStarting:nil ending:nil calendars:@[calendar]];
             }
             [self.defaultStore fetchRemindersMatchingPredicate:reminderPredicate completion:^(NSArray *reminders) {
-                completion([reminders copy]);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    completion([reminders copy]);
+                }];
             }];
         }
     } else {
@@ -100,5 +102,13 @@ static PPEvenKitManager *_sharedManager;
     }
 }
 
+
+- (BOOL)saveReminder:(EKReminder *)reminder{
+    return [self.defaultStore saveReminder:reminder commit:YES error:nil];
+}
+
+- (BOOL)deleteReminder:(EKReminder *)reminder{
+    return [self.defaultStore removeReminder:reminder commit:YES error:nil];
+}
 
 @end
