@@ -9,6 +9,7 @@
 #import "PPAppDelegate.h"
 #import "PPEvenKitManager.h"
 #import <GAI.h>
+#import "GVUserDefaults+Progress.h"
 
 @implementation PPAppDelegate
 

@@ -10,5 +10,4 @@
 
 @interface GVUserDefaults (Progress)
 @property (nonatomic) BOOL firstTimeLaunchApp;
-
 @end

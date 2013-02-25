@@ -8,6 +8,8 @@
 
 #import "ProgressTests.h"
 
+#import "GVUserDefaults+Progress.h"
+
 @implementation ProgressTests
 
 - (void)setUp
@@ -24,9 +26,13 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in ProgressTests");
+- (void)testUserDefaust{
+    
+    
+    if (![GVUserDefaults standardUserDefaults].firstTimeLaunchApp) {
+        STFail(@"Not first launch");
+    }
+        
 }
 
 @end

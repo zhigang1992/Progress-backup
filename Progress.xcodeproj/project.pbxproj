@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041C811716DB0DFB0034A3A8 /* GVUserDefaults+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */; };
+		041C811B16DB0EAD0034A3A8 /* PPEvenKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824116DAFB770028AF2A /* PPEvenKitManager.m */; };
+		041C811E16DB0F080034A3A8 /* PPEvenKitManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 041C811D16DB0F080034A3A8 /* PPEvenKitManagerTest.m */; };
 		044C661516AFE28100F9BC1E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 044C661416AFE28100F9BC1E /* Icon@2x.png */; };
 		044C661816AFE29F00F9BC1E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 044C661716AFE29F00F9BC1E /* Icon.png */; };
 		0486284C16B000D700F62384 /* Progress.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0486284A16B000D700F62384 /* Progress.xcdatamodeld */; };
@@ -26,9 +29,11 @@
 		04BDDEEB16902D0A00D04A9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC616902D0900D04A9E /* Foundation.framework */; };
 		04BDDEF316902D0A00D04A9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04BDDEF116902D0A00D04A9E /* InfoPlist.strings */; };
 		04BDDEF616902D0A00D04A9E /* ProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BDDEF516902D0A00D04A9E /* ProgressTests.m */; };
+		04DF9BD016DB10EF0061F508 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD824316DAFF670028AF2A /* EventKit.framework */; };
 		04FD824216DAFB770028AF2A /* PPEvenKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824116DAFB770028AF2A /* PPEvenKitManager.m */; };
 		04FD824416DAFF670028AF2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD824316DAFF670028AF2A /* EventKit.framework */; };
 		04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */; };
+		499D0FC6EC814D28AD7747E2 /* libPods-ProgressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBACA10CB374A269383E1A7 /* libPods-ProgressTests.a */; };
 		E448B7DB3E2B421C88755488 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 506553F6D4624CF3AC28E6EC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041C811C16DB0F080034A3A8 /* PPEvenKitManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEvenKitManagerTest.h; sourceTree = "<group>"; };
+		041C811D16DB0F080034A3A8 /* PPEvenKitManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPEvenKitManagerTest.m; sourceTree = "<group>"; };
 		04386A0B16908C4C0058C876 /* Progress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Progress.entitlements; sourceTree = "<group>"; };
 		044C661416AFE28100F9BC1E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		044C661716AFE29F00F9BC1E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
@@ -74,7 +81,9 @@
 		04FD824316DAFF670028AF2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		04FD824516DB02910028AF2A /* GVUserDefaults+Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Progress.h"; sourceTree = "<group>"; };
 		04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Progress.m"; sourceTree = "<group>"; };
+		1DBACA10CB374A269383E1A7 /* libPods-ProgressTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ProgressTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		506553F6D4624CF3AC28E6EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB89F1D0E2E40E78BF3BAFF /* Pods-ProgressTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressTests.xcconfig"; path = "Pods/Pods-ProgressTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C1BEB88070034FED9EE62EFA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -95,9 +104,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DF9BD016DB10EF0061F508 /* EventKit.framework in Frameworks */,
 				04BDDEE916902D0A00D04A9E /* SenTestingKit.framework in Frameworks */,
 				04BDDEEA16902D0A00D04A9E /* UIKit.framework in Frameworks */,
 				04BDDEEB16902D0A00D04A9E /* Foundation.framework in Frameworks */,
+				499D0FC6EC814D28AD7747E2 /* libPods-ProgressTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +123,7 @@
 				04BDDEC316902D0900D04A9E /* Frameworks */,
 				04BDDEC116902D0900D04A9E /* Products */,
 				C1BEB88070034FED9EE62EFA /* Pods.xcconfig */,
+				ACB89F1D0E2E40E78BF3BAFF /* Pods-ProgressTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +145,7 @@
 				04BDDEC816902D0900D04A9E /* CoreGraphics.framework */,
 				04BDDEE816902D0A00D04A9E /* SenTestingKit.framework */,
 				506553F6D4624CF3AC28E6EC /* libPods.a */,
+				1DBACA10CB374A269383E1A7 /* libPods-ProgressTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,6 +188,8 @@
 		04BDDEEE16902D0A00D04A9E /* ProgressTests */ = {
 			isa = PBXGroup;
 			children = (
+				041C811C16DB0F080034A3A8 /* PPEvenKitManagerTest.h */,
+				041C811D16DB0F080034A3A8 /* PPEvenKitManagerTest.m */,
 				04BDDEF416902D0A00D04A9E /* ProgressTests.h */,
 				04BDDEF516902D0A00D04A9E /* ProgressTests.m */,
 				04BDDEEF16902D0A00D04A9E /* Supporting Files */,
@@ -220,6 +235,7 @@
 				04BDDEE316902D0A00D04A9E /* Frameworks */,
 				04BDDEE416902D0A00D04A9E /* Resources */,
 				04BDDEE516902D0A00D04A9E /* ShellScript */,
+				1BF52804E5B2403EB1065F09 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,6 +314,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		1BF52804E5B2403EB1065F09 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ProgressTests-resources.sh\"\n";
+		};
 		F67FF6855DB24024AF9B5986 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,7 +362,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041C811B16DB0EAD0034A3A8 /* PPEvenKitManager.m in Sources */,
+				041C811716DB0DFB0034A3A8 /* GVUserDefaults+Progress.m in Sources */,
 				04BDDEF616902D0A00D04A9E /* ProgressTests.m in Sources */,
+				041C811E16DB0F080034A3A8 /* PPEvenKitManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +485,7 @@
 		};
 		04BDDEFD16902D0A00D04A9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACB89F1D0E2E40E78BF3BAFF /* Pods-ProgressTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Progress.app/Progress";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -469,6 +503,7 @@
 		};
 		04BDDEFE16902D0A00D04A9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACB89F1D0E2E40E78BF3BAFF /* Pods-ProgressTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Progress.app/Progress";
 				FRAMEWORK_SEARCH_PATHS = (
