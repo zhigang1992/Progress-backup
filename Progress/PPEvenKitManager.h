@@ -15,4 +15,13 @@
 
 - (void)setupEventManagerWithCompletionBlock:(void (^)(BOOL success))completionBlock;
 
+
+//Reminder methods
+
+- (NSString *)defaultReminderListIdentifier;
+
+- (NSArray *)reminderLists;
+
+- (void)getReminderItemsInListWithIdentifier:(NSString *)listIdentifier includeCompleted:(BOOL)includeCompleted includeImcompleted:(BOOL)incluImcomple withCompletionBlock:(void (^)(NSArray *))completion;
+
 @end
