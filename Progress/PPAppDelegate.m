@@ -7,6 +7,8 @@
 //
 
 #import "PPAppDelegate.h"
+#import "PPEvenKitManager.h"
+#import <GAI.h>
 
 @implementation PPAppDelegate
 
@@ -14,7 +16,27 @@
 {
     // Override point for customization after application launch.
     
+    //NUI
     [NUIAppearance init];
+    
+    //Google Analytics
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    // Optional: set debug to YES for extra debugging information.
+    [GAI sharedInstance].debug = YES;
+    // Create tracker instance.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37324298-1"];
+    
+    [[PPEvenKitManager sharedManager] setupEventManagerWithCompletionBlock:^(BOOL success) {
+        if (success) {
+            NSLog(@"success");
+        } else {
+            NSLog(@"failed");
+        }
+    }];
+    
     return YES;
 }
 							

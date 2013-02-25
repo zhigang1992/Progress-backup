@@ -26,6 +26,9 @@
 		04BDDEEB16902D0A00D04A9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BDDEC616902D0900D04A9E /* Foundation.framework */; };
 		04BDDEF316902D0A00D04A9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04BDDEF116902D0A00D04A9E /* InfoPlist.strings */; };
 		04BDDEF616902D0A00D04A9E /* ProgressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BDDEF516902D0A00D04A9E /* ProgressTests.m */; };
+		04FD824216DAFB770028AF2A /* PPEvenKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824116DAFB770028AF2A /* PPEvenKitManager.m */; };
+		04FD824416DAFF670028AF2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD824316DAFF670028AF2A /* EventKit.framework */; };
+		04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */; };
 		E448B7DB3E2B421C88755488 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 506553F6D4624CF3AC28E6EC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,11 @@
 		04BDDEF216902D0A00D04A9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04BDDEF416902D0A00D04A9E /* ProgressTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressTests.h; sourceTree = "<group>"; };
 		04BDDEF516902D0A00D04A9E /* ProgressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressTests.m; sourceTree = "<group>"; };
+		04FD824016DAFB770028AF2A /* PPEvenKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEvenKitManager.h; sourceTree = "<group>"; };
+		04FD824116DAFB770028AF2A /* PPEvenKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPEvenKitManager.m; sourceTree = "<group>"; };
+		04FD824316DAFF670028AF2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		04FD824516DB02910028AF2A /* GVUserDefaults+Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Progress.h"; sourceTree = "<group>"; };
+		04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Progress.m"; sourceTree = "<group>"; };
 		506553F6D4624CF3AC28E6EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BEB88070034FED9EE62EFA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -75,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FD824416DAFF670028AF2A /* EventKit.framework in Frameworks */,
 				04BDDEC516902D0900D04A9E /* UIKit.framework in Frameworks */,
 				04BDDEC716902D0900D04A9E /* Foundation.framework in Frameworks */,
 				04BDDEC916902D0900D04A9E /* CoreGraphics.framework in Frameworks */,
@@ -118,6 +127,7 @@
 		04BDDEC316902D0900D04A9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04FD824316DAFF670028AF2A /* EventKit.framework */,
 				04BDDEC416902D0900D04A9E /* UIKit.framework */,
 				04BDDEC616902D0900D04A9E /* Foundation.framework */,
 				04BDDEC816902D0900D04A9E /* CoreGraphics.framework */,
@@ -130,7 +140,10 @@
 		04BDDECA16902D0900D04A9E /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				04386A0B16908C4C0058C876 /* Progress.entitlements */,
+				04FD824516DB02910028AF2A /* GVUserDefaults+Progress.h */,
+				04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */,
+				04FD824016DAFB770028AF2A /* PPEvenKitManager.h */,
+				04FD824116DAFB770028AF2A /* PPEvenKitManager.m */,
 				04BDDED316902D0900D04A9E /* PPAppDelegate.h */,
 				04BDDED416902D0900D04A9E /* PPAppDelegate.m */,
 				04BDDEDC16902D0900D04A9E /* Progress.storyboard */,
@@ -145,6 +158,7 @@
 		04BDDECB16902D0900D04A9E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04386A0B16908C4C0058C876 /* Progress.entitlements */,
 				044C661716AFE29F00F9BC1E /* Icon.png */,
 				044C661416AFE28100F9BC1E /* Icon@2x.png */,
 				04BDDECC16902D0900D04A9E /* Progress-Info.plist */,
@@ -309,6 +323,8 @@
 				04BDDED516902D0900D04A9E /* PPAppDelegate.m in Sources */,
 				04BDDEE116902D0900D04A9E /* PPViewController.m in Sources */,
 				0486284C16B000D700F62384 /* Progress.xcdatamodeld in Sources */,
+				04FD824216DAFB770028AF2A /* PPEvenKitManager.m in Sources */,
+				04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
