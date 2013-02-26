@@ -43,10 +43,30 @@
                             <outlet property="delegate" destination="1MC-Iw-JPa" id="ZyO-r5-k8M"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="pullDownView" destination="byd-bd-i3h" id="R1k-sW-e0w"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UnO-Gb-ptI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="byd-bd-i3h">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" placeholder="#task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kup-8V-B1I">
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Kup-8V-B1I" firstAttribute="top" secondItem="byd-bd-i3h" secondAttribute="top" constant="20" symbolic="YES" type="default" id="43M-00-tER"/>
+                        <constraint firstAttribute="bottom" secondItem="Kup-8V-B1I" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Gnj-3I-DzP"/>
+                        <constraint firstAttribute="trailing" secondItem="Kup-8V-B1I" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Iuh-r2-1Ms"/>
+                        <constraint firstItem="Kup-8V-B1I" firstAttribute="leading" secondItem="byd-bd-i3h" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="k6h-8q-kbI"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="652" y="122"/>
+            <point key="canvasLocation" x="-97" y="101"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sC8-Wa-VaP">
@@ -84,20 +104,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avM-jj-Z7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="726"/>
+            <point key="canvasLocation" x="-97" y="705"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PPRemindersViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PPRemindersViewController.h"/>
-        </class>
-        <class className="ReminderItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReminderItemCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
