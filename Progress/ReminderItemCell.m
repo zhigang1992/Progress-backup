@@ -49,9 +49,11 @@
         self.originalCenter = self.center;
         UIImageView *checkMarkView = [[UIImageView alloc] initWithFrame:checkMarkOriginFrame];
         checkMarkView.backgroundColor = [UIColor greenColor];
+        checkMarkView.highlightedImage = nil;
         checkMarkView.tag = 1;
         UIImageView *deleteMarkView = [[UIImageView alloc] initWithFrame:deleteMarkOriginFrame];
         deleteMarkView.backgroundColor = [UIColor redColor];
+        deleteMarkView.highlightedImage = nil;
         deleteMarkView.tag = 2;
         [self insertSubview:checkMarkView atIndex:0];
         [self insertSubview:deleteMarkView atIndex:0];

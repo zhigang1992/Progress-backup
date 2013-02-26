@@ -110,7 +110,7 @@ TableCellDetail {
     font-size: 14;
     font-color: @secondaryFontColor;
 }
-TextField {
+CustomTextField {
     height: 37;
     font-name: @inputFontName;
     font-size: 18;

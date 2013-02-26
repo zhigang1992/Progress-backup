@@ -56,7 +56,7 @@
 		044C661416AFE28100F9BC1E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		044C661716AFE29F00F9BC1E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		0486284B16B000D700F62384 /* Progress.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Progress.xcdatamodel; sourceTree = "<group>"; };
-		048D433C16DB9BA400A40CB1 /* Progress.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Progress.nss; sourceTree = "<group>"; };
+		048D433C16DB9BA400A40CB1 /* Progress.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Progress.nss; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.css; };
 		048D433E16DB9D5300A40CB1 /* PPRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRemindersViewController.h; sourceTree = "<group>"; };
 		048D433F16DB9D5400A40CB1 /* PPRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRemindersViewController.m; sourceTree = "<group>"; };
 		048D437016DBC4E000A40CB1 /* ReminderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderItemCell.h; sourceTree = "<group>"; };

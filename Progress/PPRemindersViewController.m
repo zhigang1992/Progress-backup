@@ -11,7 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ReminderItemCell.h"
 
-@interface PPRemindersViewController () <ReminderItemCellDelegate>
+@interface PPRemindersViewController () <ReminderItemCellDelegate, UIScrollViewDelegate>
 @property (nonatomic) NSArray *remindersDatasource;
 @end
 
