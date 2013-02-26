@@ -16,6 +16,7 @@
 
 @interface PPRemindersViewController () <ReminderItemCellDelegate, ZGPullDragViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *pullDownView;
+@property (nonatomic, strong) UITableViewCell *placeHolderCell;
 @property (nonatomic) NSArray *remindersDatasource;
 @end
 
@@ -39,9 +40,7 @@ static NSString *CellIdentifier = @"ReminderCell";
         [SVProgressHUD dismiss];
         [self.tableView reloadData];
         
-        UIView *pullView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight)];
-        pullView.backgroundColor = [UIColor greenColor];
-        [self.tableView addZGPullView:pullView];
+        [self.tableView addZGPullView:self.placeHolderCell];
         
         UIView *dragView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight)];
         dragView.backgroundColor = [UIColor greenColor];
@@ -66,6 +65,26 @@ static NSString *CellIdentifier = @"ReminderCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 
+#pragma mark - Pull
+
+- (UITableViewCell *)placeHolderCell{
+    if (!_placeHolderCell) {
+        _placeHolderCell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
+        _placeHolderCell.frame = CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight);
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 29, 300, 21)];
+        textField.borderStyle = UITextBorderStyleNone;
+        textField.font = [UIFont systemFontOfSize:17.0];
+        textField.tag = 1;
+        [_placeHolderCell addSubview:textField];
+    }
+    return _placeHolderCell;
+}
+
+- (void)pullView:(UIView *)pullView hangForCompletionBlock:(void (^)())completed{
+    [[self.placeHolderCell viewWithTag:1] becomeFirstResponder];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,7 +94,6 @@ static NSString *CellIdentifier = @"ReminderCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     ReminderItemCell *cell = [[ReminderItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     EKReminder *reminder = [self.remindersDatasource objectAtIndex:indexPath.row];
     cell.delegate = self;
