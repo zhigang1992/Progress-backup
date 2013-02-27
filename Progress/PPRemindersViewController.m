@@ -130,7 +130,17 @@ static NSString *CellIdentifier = @"ReminderCell";
 
 - (void)userPullOrDragStoppedWithPullView:(UIView *)pullView dragView:(UIView *)dragView{
     if (self.pullViewShowRadio > 1) {
-        self.isEdingAReminder = YES;
+        if (!self.isEdingAReminder) {
+            self.isEdingAReminder = YES;
+        } else {
+            UITableViewCell *editingCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            UITextField *editingTextField = (UITextField *)[editingCell viewWithTag:6];
+            if (editingTextField.text && ![editingTextField.text isEqualToString:@""]) {
+                EKReminder *newReminder = [[PPEvenKitManager sharedManager] createReminderWithTitle:editingTextField.text];
+                [self.remindersDatasource insertObject:newReminder atIndex:0];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        }
         self.pullDownView = 0;
     }
     
@@ -162,7 +172,7 @@ static NSString *CellIdentifier = @"ReminderCell";
     if (!textField.text || [textField.text isEqualToString:@""]) {
         self.isEdingAReminder = NO;
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         EKReminder *newReminder = [[PPEvenKitManager sharedManager] createReminderWithTitle:textField.text];
         [self.remindersDatasource insertObject:newReminder atIndex:0];
@@ -188,6 +198,7 @@ static NSString *CellIdentifier = @"ReminderCell";
         textField.font = [UIFont systemFontOfSize:17.f];
         textField.delegate = self;
         textField.text = @"";
+        textField.tag = 6;
         [cell addSubview:textField];
         textField.frame = CGRectMake(10, 29, 300, 21);
         [textField becomeFirstResponder];

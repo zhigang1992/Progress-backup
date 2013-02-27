@@ -147,11 +147,13 @@ static char UIScrollViewWasDragging;
         [self dragViewHandler:yOffset-(self.dragView.frame.origin.y - self.frame.size.height)];
     }
     if (self.wasDragging && !self.isDragging) {
+        self.wasDragging = self.isDragging;
         if ([self.pullDragDelegate respondsToSelector:@selector(userPullOrDragStoppedWithPullView:dragView:)]) {
             [self.pullDragDelegate userPullOrDragStoppedWithPullView:self.pullView dragView:self.dragView];
         }
+    } else {
+        self.wasDragging = self.isDragging;
     }
-    self.wasDragging = self.isDragging;
 }
 
 
