@@ -29,11 +29,11 @@
         
         UIImageView *checkMarkView = [[UIImageView alloc] initWithFrame:checkMarkOriginFrame];
         checkMarkView.backgroundColor = [UIColor greenColor];
-        checkMarkView.highlightedImage = nil;
+        checkMarkView.alpha = 0;
         checkMarkView.tag = 1;
         UIImageView *deleteMarkView = [[UIImageView alloc] initWithFrame:deleteMarkOriginFrame];
         deleteMarkView.backgroundColor = [UIColor redColor];
-        deleteMarkView.highlightedImage = nil;
+        deleteMarkView.alpha = 0;
         deleteMarkView.tag = 2;
         [self insertSubview:checkMarkView atIndex:0];
         [self insertSubview:deleteMarkView atIndex:0];
@@ -73,7 +73,9 @@
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.originalCenter = self.center;
         checkMarkView.frame = checkMarkOriginFrame;
+        checkMarkView.alpha = 0;
         deleteMarkView.frame = deleteMarkOriginFrame;
+        deleteMarkView.alpha = 0;
     } else {
         CGPoint translation = [gesture translationInView:self];
         CGFloat xOffset = translation.x;
@@ -81,7 +83,9 @@
             self.center = CGPointMake(self.originalCenter.x+xOffset, self.originalCenter.y);
             if (xOffset>-kDefaultEdageXOffset && xOffset<kDefaultEdageXOffset) {
                 checkMarkView.frame = CGRectOffset(checkMarkOriginFrame, -xOffset, 0);
+                checkMarkView.alpha = fabs(xOffset)/80.f;
                 deleteMarkView.frame = CGRectOffset(deleteMarkOriginFrame, -xOffset, 0);
+                deleteMarkView.alpha = fabs(xOffset)/80.f;
             }
         } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
             if (xOffset>kDefaultEdageXOffset) {

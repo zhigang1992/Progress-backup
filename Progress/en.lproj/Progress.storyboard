@@ -13,8 +13,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" textLabel="Gi2-2j-rob" detailTextLabel="nvd-Qt-JxD" style="IBUITableViewCellStyleValue1" id="dwc-W6-Rod" customClass="ReminderItemCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditingCell" id="h0U-eI-tuO">
                                 <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="#task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J3Y-ph-mra">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="300" id="0si-pG-2j5"/>
+                                                <constraint firstAttribute="height" constant="30" id="Es2-z9-CFd"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="J3Y-ph-mra" firstAttribute="centerY" secondItem="h0U-eI-tuO" secondAttribute="centerY" type="default" id="E5b-2u-6yA"/>
+                                    <constraint firstItem="J3Y-ph-mra" firstAttribute="centerX" secondItem="h0U-eI-tuO" secondAttribute="centerX" type="default" id="Wyp-B5-Ez8"/>
+                                </constraints>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" textLabel="Gi2-2j-rob" detailTextLabel="nvd-Qt-JxD" style="IBUITableViewCellStyleValue1" id="dwc-W6-Rod" customClass="ReminderItemCell">
+                                <rect key="frame" x="0.0" y="102" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
