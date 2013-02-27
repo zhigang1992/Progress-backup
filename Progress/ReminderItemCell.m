@@ -96,6 +96,10 @@
                 checkMarkView.alpha = fabs(xOffset)/80.f;
                 deleteMarkView.frame = CGRectOffset(deleteMarkOriginFrame, -xOffset, 0);
                 deleteMarkView.alpha = fabs(xOffset)/80.f;
+            } else if (xOffset > kDefaultEdageXOffset ) {
+                checkMarkView.frame = CGRectOffset(checkMarkOriginFrame, -kDefaultEdageXOffset, 0);
+            } else {
+                deleteMarkView.frame = CGRectOffset(deleteMarkOriginFrame, kDefaultEdageXOffset, 0);
             }
         } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
             if (xOffset>kDefaultEdageXOffset) {
