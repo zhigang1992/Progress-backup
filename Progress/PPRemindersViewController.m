@@ -10,9 +10,10 @@
 #import "PPEvenKitManager.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "UIScrollView+ZGPullDrag.h"
-#import <NUI/NUIConverter.h>
-#import <NUI/NUIGraphics.h>
+#import <NUI/UILabel+NUI.h>
 #import "ReminderItemCell.h"
+
+typedef NSUInteger ZGScrollViewStyle;
 
 @interface PPRemindersViewController () <ReminderItemCellDelegate, ZGPullDragViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *pullDownView;
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) UITableViewCell *editingCell;
 @property (nonatomic) BOOL isEdingAReminder;
 @property (nonatomic) NSArray *remindersDatasource;
+@property (nonatomic) CGFloat pullViewShowRadio;
+@property (nonatomic) CGFloat xTouchPoint;
 @end
 
 @implementation PPRemindersViewController
@@ -36,6 +39,8 @@ static NSString *CellIdentifier = @"ReminderCell";
     self.clearsSelectionOnViewWillAppear = NO;
     self.navigationController.navigationBarHidden = YES;
     
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
     [self.tableView registerClass:[ReminderItemCell class] forCellReuseIdentifier:CellIdentifier];
     
     [SVProgressHUD show];
@@ -48,7 +53,13 @@ static NSString *CellIdentifier = @"ReminderCell";
         [self.tableView addZGPullView:self.placeHolderCell];
         
         UIView *dragView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight)];
-        dragView.backgroundColor = [UIColor greenColor];
+        dragView.backgroundColor = [UIColor clearColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:dragView.frame];
+        label.nuiClass = @"WhiteLabel";
+        [label applyNUI];
+        label.text = @"Hide Completed";
+        label.tag = 1;
+        [dragView addSubview:label];
         [self.tableView addZGDragView:dragView];
         self.tableView.pullDragDelegate = self;
         
@@ -84,6 +95,17 @@ static NSString *CellIdentifier = @"ReminderCell";
     return _placeHolderCell;
 }
 
+
+- (void)pullView:(UIView *)pullView Show:(CGFloat)shownPixels ofTotal:(CGFloat)totalPixels{
+    self.pullViewShowRadio = shownPixels/totalPixels;
+    CGFloat pullProgress = MAX(0, MIN(1, shownPixels/totalPixels));
+    pullView.alpha = pullProgress;
+}
+
+- (void)dragView:(UIView *)dragView Show:(CGFloat)showPixels ofTotal:(CGFloat)totalPixels{
+    CGFloat dragProgress = MAX(0, MIN(1, showPixels/totalPixels));
+    dragView.alpha = dragProgress;
+}
 
 - (void)userPullOrDragStoppedWithPullView:(UIView *)pullView dragView:(UIView *)dragView{
     NSLog(@"Stopped");
@@ -139,25 +161,5 @@ static NSString *CellIdentifier = @"ReminderCell";
     [[PPEvenKitManager sharedManager] deleteReminder:reminder];
 }
 
-#pragma mark - ScrollView
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesBegan:touches withEvent:event];
-    [self touchPointUpdate:[touches anyObject]];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesMoved:touches withEvent:event];
-    [self touchPointUpdate:[touches anyObject]];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesEnded:touches withEvent:event];
-    [self touchPointUpdate:[touches anyObject]];
-}
-
-- (void)touchPointUpdate:(UITouch *)touch{
-    NSLog(@"AwesomE");
-}
 
 @end

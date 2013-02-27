@@ -161,8 +161,6 @@ static char UIScrollViewWasDragging;
     }
 }
 
-
-
 - (void)pullViewHandler:(CGFloat )visiblePixels{
     if ([self.pullDragDelegate respondsToSelector:@selector(pullView:Show:ofTotal:)]) {
         [self.pullDragDelegate pullView:self.pullView Show:visiblePixels ofTotal:self.pullView.frame.size.height];

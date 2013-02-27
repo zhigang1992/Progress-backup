@@ -9,10 +9,11 @@
 #import "GVUserDefaults+Progress.h"
 
 @implementation GVUserDefaults (Progress)
-@dynamic firstTimeLaunchApp;
+@dynamic firstTimeLaunchApp, hideCompleted;
 
 - (NSDictionary *)setupDefaults{
-    return @{@"firstTimeLaunchApp": @YES};
+    return @{@"firstTimeLaunchApp": @YES,
+             @"hideCompleted": @YES};
 }
 
 @end

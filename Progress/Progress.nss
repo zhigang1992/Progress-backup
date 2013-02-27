@@ -55,6 +55,13 @@ Label {
     font-color: @primaryFontColor;
     text-auto-fit: false;
 }
+WhiteLabel {
+    font-name: @secondaryFontName;
+    font-size: 20;
+    font-color: @primaryBackgroundColorBottom;
+    text-auto-fit: false;
+    text-align: center;
+}
 LargeLabel {
     font-size: 24;
 }

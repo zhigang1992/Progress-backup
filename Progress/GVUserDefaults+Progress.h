@@ -10,4 +10,5 @@
 
 @interface GVUserDefaults (Progress)
 @property (nonatomic) BOOL firstTimeLaunchApp;
+@property (nonatomic) BOOL hideCompleted;
 @end

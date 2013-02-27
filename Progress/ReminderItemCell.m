@@ -50,6 +50,16 @@
     [super layoutSubviews];
     [self sendSubviewToBack:[self viewWithTag:1]];
     [self sendSubviewToBack:[self viewWithTag:2]];
+    
+    CGRect textLabelFrame = self.textLabel.frame;
+    CGRect detailLableFrame = self.detailTextLabel.frame;
+    
+    
+    if (textLabelFrame.origin.x+textLabelFrame.size.width > detailLableFrame.origin.x) {
+        textLabelFrame.size.width = detailLableFrame.origin.x - textLabelFrame.origin.x - 10;
+    }
+    
+    self.textLabel.frame = textLabelFrame;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
