@@ -13,6 +13,7 @@
 #import <NUI/UILabel+NUI.h>
 #import "ReminderItemCell.h"
 #import "GVUserDefaults+Progress.h"
+#import <PaperFold/FoldView.h>
 
 typedef NSUInteger ZGScrollViewStyle;
 
@@ -50,7 +51,10 @@ static NSString *CellIdentifier = @"ReminderCell";
         [self.tableView reloadData];
         [SVProgressHUD dismiss];
         
-        [self.tableView addZGPullView:self.placeHolderCell];
+//        [self.tableView addZGPullView:self.placeHolderCell];
+        FoldView *pullView = [[FoldView alloc] initWithFrame:self.placeHolderCell.frame foldDirection:FoldDirectionVertical];
+        [pullView unfoldViewToFraction:0];
+        [self.tableView addZGPullView:pullView];
         
         UIView *dragView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
         dragView.backgroundColor = [UIColor clearColor];
@@ -107,6 +111,8 @@ static NSString *CellIdentifier = @"ReminderCell";
     self.pullViewShowRadio = shownPixels/totalPixels;
     CGFloat pullProgress = MAX(0, MIN(1, shownPixels/totalPixels));
     pullView.alpha = pullProgress;
+    FoldView *fView = (FoldView *)pullView;
+    [fView unfoldViewToFraction:pullProgress];
 }
 
 - (void)dragView:(UIView *)dragView Show:(CGFloat)showPixels ofTotal:(CGFloat)totalPixels{
@@ -155,7 +161,8 @@ static NSString *CellIdentifier = @"ReminderCell";
     [textField resignFirstResponder];
     if (!textField.text || [textField.text isEqualToString:@""]) {
         self.isEdingAReminder = NO;
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         EKReminder *newReminder = [[PPEvenKitManager sharedManager] createReminderWithTitle:textField.text];
         [self.remindersDatasource insertObject:newReminder atIndex:0];
