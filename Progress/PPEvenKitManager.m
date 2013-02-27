@@ -12,6 +12,7 @@
 @interface PPEvenKitManager()
 
 @property (nonatomic, strong) EKEventStore *defaultStore;
+@property (nonatomic, strong) EKCalendar *currentCalendar;
 
 @end
 
@@ -36,6 +37,13 @@ static PPEvenKitManager *_sharedManager;
         self.defaultStore = [[EKEventStore alloc] init];
     }
     return self;
+}
+
+- (EKCalendar *)currentCalendar{
+    if (!_currentCalendar) {
+        _currentCalendar = [self.defaultStore defaultCalendarForNewReminders];
+    }
+    return _currentCalendar;
 }
 
 - (void)setupEventManagerWithCompletionBlock:(void (^)(BOOL))completionBlock{
@@ -109,6 +117,17 @@ static PPEvenKitManager *_sharedManager;
 
 - (BOOL)deleteReminder:(EKReminder *)reminder{
     return [self.defaultStore removeReminder:reminder commit:YES error:nil];
+}
+
+- (EKReminder *)createReminderWithTitle:(NSString *)reminderTitle{
+    EKReminder *newReminder = [EKReminder reminderWithEventStore:self.defaultStore];
+    newReminder.title = reminderTitle;
+    newReminder.calendar = self.currentCalendar;
+    if ([self saveReminder:newReminder]) {
+        return newReminder;
+    } else {
+        return nil;
+    }
 }
 
 @end

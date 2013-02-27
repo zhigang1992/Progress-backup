@@ -12,23 +12,22 @@
 #import "UIScrollView+ZGPullDrag.h"
 #import <NUI/UILabel+NUI.h>
 #import "ReminderItemCell.h"
+#import "GVUserDefaults+Progress.h"
 
 typedef NSUInteger ZGScrollViewStyle;
 
-@interface PPRemindersViewController () <ReminderItemCellDelegate, ZGPullDragViewDelegate>
+@interface PPRemindersViewController () <ReminderItemCellDelegate, ZGPullDragViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *pullDownView;
 @property (nonatomic, strong) UITableViewCell *placeHolderCell;
-@property (nonatomic, strong) UITableViewCell *editingCell;
 @property (nonatomic) BOOL isEdingAReminder;
-@property (nonatomic) NSArray *remindersDatasource;
+@property (nonatomic) NSMutableArray *remindersDatasource;
 @property (nonatomic) CGFloat pullViewShowRadio;
-@property (nonatomic) CGFloat xTouchPoint;
+@property (nonatomic) CGFloat dragViewShowRadio;
 @end
 
 @implementation PPRemindersViewController
 
 static NSString *CellIdentifier = @"ReminderCell";
-
 
 
 - (void)viewDidLoad
@@ -45,19 +44,20 @@ static NSString *CellIdentifier = @"ReminderCell";
     
     [SVProgressHUD show];
     NSString *defaultReminderIdentifier = [[PPEvenKitManager sharedManager] defaultReminderListIdentifier];
-    [[PPEvenKitManager sharedManager] getReminderItemsInListWithIdentifier:defaultReminderIdentifier includeCompleted:YES includeImcompleted:YES withCompletionBlock:^(NSArray *reminedrItems) {
-        self.remindersDatasource = reminedrItems;
-        [SVProgressHUD dismiss];
+    [[PPEvenKitManager sharedManager] getReminderItemsInListWithIdentifier:defaultReminderIdentifier includeCompleted:![GVUserDefaults standardUserDefaults].hideCompleted includeImcompleted:YES withCompletionBlock:^(NSArray *reminedrItems) {
+        self.remindersDatasource = [reminedrItems mutableCopy];
+        [self sortReminders];
         [self.tableView reloadData];
+        [SVProgressHUD dismiss];
         
         [self.tableView addZGPullView:self.placeHolderCell];
         
-        UIView *dragView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight)];
+        UIView *dragView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
         dragView.backgroundColor = [UIColor clearColor];
         UILabel *label = [[UILabel alloc] initWithFrame:dragView.frame];
         label.nuiClass = @"WhiteLabel";
         [label applyNUI];
-        label.text = @"Hide Completed";
+        label.text = [GVUserDefaults standardUserDefaults].hideCompleted ? @"Show Completed" : @"Hide Completed";
         label.tag = 1;
         [dragView addSubview:label];
         [self.tableView addZGDragView:dragView];
@@ -66,23 +66,13 @@ static NSString *CellIdentifier = @"ReminderCell";
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 
-#pragma mark - Pull
+#pragma mark - Pull And Drag
 
 - (UITableViewCell *)placeHolderCell{
     if (!_placeHolderCell) {
@@ -95,6 +85,23 @@ static NSString *CellIdentifier = @"ReminderCell";
     return _placeHolderCell;
 }
 
+- (void)setIsEdingAReminder:(BOOL)isEdingAReminder{
+    if (isEdingAReminder != _isEdingAReminder) {
+        _isEdingAReminder = isEdingAReminder;
+        
+        if (isEdingAReminder) {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.tableView.contentInset = UIEdgeInsetsMake(80, 0, 0, 0);
+            } completion:^(BOOL finished) {
+                CGPoint offSet = self.tableView.contentOffset;
+                [self.tableView reloadData];
+                offSet.y += 80;
+                [self.tableView setContentOffset:offSet animated:NO];
+                [self.tableView setContentInset:UIEdgeInsetsZero];
+            }];
+        }
+    }
+}
 
 - (void)pullView:(UIView *)pullView Show:(CGFloat)shownPixels ofTotal:(CGFloat)totalPixels{
     self.pullViewShowRadio = shownPixels/totalPixels;
@@ -105,10 +112,57 @@ static NSString *CellIdentifier = @"ReminderCell";
 - (void)dragView:(UIView *)dragView Show:(CGFloat)showPixels ofTotal:(CGFloat)totalPixels{
     CGFloat dragProgress = MAX(0, MIN(1, showPixels/totalPixels));
     dragView.alpha = dragProgress;
+    if (self.dragViewShowRadio <= 1 && showPixels/totalPixels >= 1 && showPixels/totalPixels > self.dragViewShowRadio) {
+        UILabel *label = (UILabel *)[dragView viewWithTag:1];
+        label.text = [GVUserDefaults standardUserDefaults].hideCompleted ? @"Release to Show Completed" : @"Release to Hide Completed";
+    } else if (self.dragViewShowRadio >= 1 && showPixels/totalPixels <= 1 && showPixels/totalPixels < self.dragViewShowRadio) {
+        UILabel *label = (UILabel *)[dragView viewWithTag:1];
+        label.text = [GVUserDefaults standardUserDefaults].hideCompleted ? @"Show Completed" : @"Hide Completed";
+    }
+    self.dragViewShowRadio = showPixels/totalPixels;
 }
 
 - (void)userPullOrDragStoppedWithPullView:(UIView *)pullView dragView:(UIView *)dragView{
-    NSLog(@"Stopped");
+    if (self.pullViewShowRadio > 1) {
+        self.isEdingAReminder = YES;
+        self.pullDownView = 0;
+    }
+    
+    if (self.dragViewShowRadio > 1) {
+        BOOL hideCompleted = [GVUserDefaults standardUserDefaults].hideCompleted;
+        
+        [[PPEvenKitManager sharedManager] getReminderItemsInListWithIdentifier:[[PPEvenKitManager sharedManager] defaultReminderListIdentifier] includeCompleted:hideCompleted includeImcompleted:YES withCompletionBlock:^(NSArray *reminedrItems) {
+
+            [UIView animateWithDuration:1.0 animations:^{
+                self.remindersDatasource = [NSMutableArray array];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationTop];
+            } completion:^(BOOL finished) {
+                self.remindersDatasource = [reminedrItems mutableCopy];
+                [self sortReminders];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                [GVUserDefaults standardUserDefaults].hideCompleted = !hideCompleted;
+                UILabel *label = (UILabel *)[dragView viewWithTag:1];
+                label.text = [GVUserDefaults standardUserDefaults].hideCompleted ? @"Show Completed" : @"Hide Completed";
+                self.dragViewShowRadio = 0;
+            }];
+        }];
+    }
+}
+
+#pragma mark - UITextFeild Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    if (!textField.text || [textField.text isEqualToString:@""]) {
+        self.isEdingAReminder = NO;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    } else {
+        EKReminder *newReminder = [[PPEvenKitManager sharedManager] createReminderWithTitle:textField.text];
+        [self.remindersDatasource insertObject:newReminder atIndex:0];
+        self.isEdingAReminder = NO;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -121,7 +175,16 @@ static NSString *CellIdentifier = @"ReminderCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isEdingAReminder && indexPath.row == 0) {
-        return self.editingCell;
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
+        textField.borderStyle = UITextBorderStyleNone;
+        textField.font = [UIFont systemFontOfSize:17.f];
+        textField.delegate = self;
+        textField.text = @"";
+        [cell addSubview:textField];
+        textField.frame = CGRectMake(10, 29, 300, 21);
+        [textField becomeFirstResponder];
+        return cell;
     } else {
         ReminderItemCell *cell = [[ReminderItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         EKReminder *reminder = [self.remindersDatasource objectAtIndex:self.isEdingAReminder?indexPath.row-1:indexPath.row];
@@ -129,6 +192,14 @@ static NSString *CellIdentifier = @"ReminderCell";
         cell.textLabel.text = reminder.title;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
         cell.accessoryType = reminder.completed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+
+        if (self.isEdingAReminder) {
+            cell.contentView.alpha = 0.4;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        } else {
+            cell.contentView.alpha = 1;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        }
         return cell;
     }
 }
@@ -149,17 +220,32 @@ static NSString *CellIdentifier = @"ReminderCell";
     sender.accessoryType = reminder.completed ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
     reminder.completed = !reminder.completed;
     [[PPEvenKitManager sharedManager] saveReminder:reminder];
+    if (indexPath.row +1 < self.remindersDatasource.count && reminder.completed) {
+        [self.remindersDatasource removeObject:reminder];
+        [self.remindersDatasource addObject:reminder];
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForRow:self.remindersDatasource.count-1 inSection:0]];
+    } else if (indexPath.row > 0 && !reminder.completed) {
+        [self.remindersDatasource removeObject:reminder];
+        [self.remindersDatasource insertObject:reminder atIndex:0];
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    }
 }
 
 - (void)deletedByTheUser:(ReminderItemCell *)sender{
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     EKReminder *reminder = [self.remindersDatasource objectAtIndex:indexPath.row];
-    NSMutableArray *mutableDataSource = [self.remindersDatasource mutableCopy];
-    [mutableDataSource removeObjectAtIndex:indexPath.row];
-    self.remindersDatasource = mutableDataSource;
+    [self.remindersDatasource removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [[PPEvenKitManager sharedManager] deleteReminder:reminder];
 }
 
+
+#pragma mark - Sort Reminders
+- (void)sortReminders{
+    NSSortDescriptor *sortWithCompleted = [[NSSortDescriptor alloc] initWithKey:@"completed"
+                                                  ascending:YES];
+    NSSortDescriptor *sortWithID = [[NSSortDescriptor alloc] initWithKey:@"calendarItemIdentifier" ascending:YES];
+    self.remindersDatasource = [[self.remindersDatasource sortedArrayUsingDescriptors:@[sortWithCompleted, sortWithID]] mutableCopy];
+}
 
 @end

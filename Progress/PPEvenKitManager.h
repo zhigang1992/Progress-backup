@@ -28,4 +28,6 @@
 
 - (BOOL)deleteReminder:(EKReminder *)reminder;
 
+- (EKReminder *)createReminderWithTitle:(NSString *)reminderTitle;
+
 @end
