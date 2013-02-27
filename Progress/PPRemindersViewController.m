@@ -77,6 +77,9 @@ static NSString *CellIdentifier = @"ReminderCell";
     if (!_placeHolderCell) {
         _placeHolderCell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
         _placeHolderCell.frame = CGRectMake(0, 0, self.view.frame.size.width, self.tableView.rowHeight);
+        UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1.f)];
+        seperator.backgroundColor = self.tableView.separatorColor;
+        [_placeHolderCell addSubview:seperator];
     }
     return _placeHolderCell;
 }
@@ -134,6 +137,27 @@ static NSString *CellIdentifier = @"ReminderCell";
     self.remindersDatasource = mutableDataSource;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [[PPEvenKitManager sharedManager] deleteReminder:reminder];
+}
+
+#pragma mark - ScrollView
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    [self touchPointUpdate:[touches anyObject]];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesMoved:touches withEvent:event];
+    [self touchPointUpdate:[touches anyObject]];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [super touchesEnded:touches withEvent:event];
+    [self touchPointUpdate:[touches anyObject]];
+}
+
+- (void)touchPointUpdate:(UITouch *)touch{
+    NSLog(@"AwesomE");
 }
 
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040E055516DD864D00E0731D /* UIScrollView+ZGPullDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E055416DD864D00E0731D /* UIScrollView+ZGPullDrag.m */; };
+		040E055816DD8EF900E0731D /* UIScrollView+ZGPullDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = 040E055716DD8EF900E0731D /* UIScrollView+ZGPullDrag.m */; };
 		041C811716DB0DFB0034A3A8 /* GVUserDefaults+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */; };
 		041C811B16DB0EAD0034A3A8 /* PPEvenKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD824116DAFB770028AF2A /* PPEvenKitManager.m */; };
 		041C811E16DB0F080034A3A8 /* PPEvenKitManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 041C811D16DB0F080034A3A8 /* PPEvenKitManagerTest.m */; };
@@ -51,8 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		040E055316DD864D00E0731D /* UIScrollView+ZGPullDrag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZGPullDrag.h"; sourceTree = "<group>"; };
-		040E055416DD864D00E0731D /* UIScrollView+ZGPullDrag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZGPullDrag.m"; sourceTree = "<group>"; };
+		040E055616DD8EF900E0731D /* UIScrollView+ZGPullDrag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZGPullDrag.h"; sourceTree = "<group>"; };
+		040E055716DD8EF900E0731D /* UIScrollView+ZGPullDrag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZGPullDrag.m"; sourceTree = "<group>"; };
 		041C811C16DB0F080034A3A8 /* PPEvenKitManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEvenKitManagerTest.h; sourceTree = "<group>"; };
 		041C811D16DB0F080034A3A8 /* PPEvenKitManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPEvenKitManagerTest.m; sourceTree = "<group>"; };
 		04386A0B16908C4C0058C876 /* Progress.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Progress.entitlements; sourceTree = "<group>"; };
@@ -161,12 +161,12 @@
 		04BDDECA16902D0900D04A9E /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				040E055316DD864D00E0731D /* UIScrollView+ZGPullDrag.h */,
-				040E055416DD864D00E0731D /* UIScrollView+ZGPullDrag.m */,
 				048D437016DBC4E000A40CB1 /* ReminderItemCell.h */,
 				048D437116DBC4E000A40CB1 /* ReminderItemCell.m */,
 				048D433E16DB9D5300A40CB1 /* PPRemindersViewController.h */,
 				048D433F16DB9D5400A40CB1 /* PPRemindersViewController.m */,
+				040E055616DD8EF900E0731D /* UIScrollView+ZGPullDrag.h */,
+				040E055716DD8EF900E0731D /* UIScrollView+ZGPullDrag.m */,
 				04FD824516DB02910028AF2A /* GVUserDefaults+Progress.h */,
 				04FD824616DB02910028AF2A /* GVUserDefaults+Progress.m */,
 				04FD824016DAFB770028AF2A /* PPEvenKitManager.h */,
@@ -370,7 +370,7 @@
 				04FD824716DB02910028AF2A /* GVUserDefaults+Progress.m in Sources */,
 				048D434016DB9D5400A40CB1 /* PPRemindersViewController.m in Sources */,
 				048D437216DBC4E000A40CB1 /* ReminderItemCell.m in Sources */,
-				040E055516DD864D00E0731D /* UIScrollView+ZGPullDrag.m in Sources */,
+				040E055816DD8EF900E0731D /* UIScrollView+ZGPullDrag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

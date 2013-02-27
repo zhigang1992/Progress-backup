@@ -34,6 +34,7 @@ static char UIScrollViewWasDragging;
         }
     } else if (self.isObserving == NO && isObserving == YES) {
         [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     }
     
     [self willChangeValueForKey:@"isObserving"];
@@ -116,18 +117,23 @@ static char UIScrollViewWasDragging;
 - (void)addZGDragView:(UIView *)dragView{
     if (self.dragView != dragView) {
         [self.dragView removeFromSuperview];
+        [self layoutIfNeeded];
+        CGFloat originY = MAX(self.frame.size.height, self.contentSize.height);
+        dragView.frame = CGRectOffset(dragView.frame, -dragView.frame.origin.x, -dragView.frame.origin.y+originY);
+        [self addSubview:dragView];
+        self.dragView = dragView;
+        self.isObserving = YES;
+    } else {
+        CGFloat originY = MAX(self.frame.size.height, self.contentSize.height);
+        dragView.frame = CGRectOffset(dragView.frame, -dragView.frame.origin.x, -dragView.frame.origin.y+originY);
     }
-    [self layoutIfNeeded];
-    CGFloat originY = MAX(self.frame.size.height, self.contentSize.height);
-    dragView.frame = CGRectOffset(dragView.frame, -dragView.frame.origin.x, -dragView.frame.origin.y+originY);
-    [self addSubview:dragView];
-    self.dragView = dragView;
-    self.isObserving = YES;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
+    } else if ([keyPath isEqualToString:@"contentSize"]) {
+        [self contentSizeDidUpdate:[[change valueForKey:NSKeyValueChangeNewKey] CGSizeValue]];
     }
 }
 
@@ -147,6 +153,15 @@ static char UIScrollViewWasDragging;
     }
     self.wasDragging = self.isDragging;
 }
+
+
+- (void)contentSizeDidUpdate:(CGSize )contenSize{
+    if (self.dragView) {
+        [self addZGDragView:self.dragView];
+    }
+}
+
+
 
 - (void)pullViewHandler:(CGFloat )visiblePixels{
     if ([self.pullDragDelegate respondsToSelector:@selector(pullView:Show:ofTotal:)]) {
